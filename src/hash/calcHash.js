@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import { createReadStream } from 'fs';
 import { createHash } from 'crypto';
 import { pipeline } from 'stream/promises';
+import { EOL } from 'os';
 import { getModuleDirName } from '../utils.js';
 
 const DIR_NAME = 'files';
@@ -15,10 +16,10 @@ const __dirname = getModuleDirName(import.meta.url);
 const calculateHash = async () => {
     const filePath = join(__dirname, DIR_NAME, FILE_NAME);
     const inputStream = createReadStream(filePath);
-    const hashStream = createHash(ALGORITHM);    
-    
+    const hashStream = createHash(ALGORITHM);
+
     await pipeline(inputStream, hashStream.setEncoding(ENCODING), process.stdout, { end: false });
-    console.log('\n');
+    console.log(EOL);
 };
 
 await calculateHash();
