@@ -1,5 +1,4 @@
 import { join } from 'path';
-import { fileURLToPath } from 'url';
 import { createReadStream } from 'fs';
 import { createHash } from 'crypto';
 import { pipeline } from 'stream/promises';
