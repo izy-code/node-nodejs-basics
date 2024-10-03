@@ -9,7 +9,7 @@ const FIB_START_NUM = 10;
 const __dirname = getModuleDirName(import.meta.url);
 const workerFilePath = join(__dirname, WORKER_FILE_NAME);
 
-const initWorkerPromise = (workerData) => new Promise((resolve, reject) => {
+const initWorkerPromise = (workerData) => new Promise((resolve) => {
     const worker = new Worker(workerFilePath, { workerData });
 
     worker.on('message', (data) => resolve({ status: 'resolved', data }));
