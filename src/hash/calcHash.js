@@ -15,9 +15,9 @@ const __dirname = getModuleDirName(import.meta.url);
 const calculateHash = async () => {
     const filePath = join(__dirname, DIR_NAME, FILE_NAME);
     const inputStream = createReadStream(filePath);
-    const hashStream = createHash(ALGORITHM);
+    const hashStream = createHash(ALGORITHM).setEncoding(ENCODING);
 
-    await pipeline(inputStream, hashStream.setEncoding(ENCODING), process.stdout, { end: false });
+    await pipeline(inputStream, hashStream, process.stdout, { end: false });
     console.log(EOL);
 };
 
